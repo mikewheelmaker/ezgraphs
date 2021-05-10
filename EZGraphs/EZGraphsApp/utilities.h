@@ -3,11 +3,11 @@
 
 enum ButtonFunctions
 {
-    NewFunction = 0,
-    SaveFunction,
-    LoadFunction,
-    ClearFunction,
-    DrawFunction
+    NewCanvas = 0,
+    ImportFunctions,
+    ExportFunctions,
+    SaveGraph,
+    ExitApplication
 };
 
 #endif // UTILITIES_H

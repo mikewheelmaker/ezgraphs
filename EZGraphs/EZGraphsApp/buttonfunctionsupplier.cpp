@@ -1,3 +1,4 @@
+#include <QCoreApplication>
 #include <QDebug>
 
 #include "buttonfunctionsupplier.h"
@@ -16,20 +17,24 @@ void ButtonFunctionSupplier::onClickedSelectFunction(ButtonFunctions choice)
 {
     switch(choice)
     {
-    case NewFunction:
-        //call method to create new function
+    case NewCanvas:
+        //call method to create new canvas
+        qDebug() << "call new canvas method";
         break;
-    case SaveFunction:
-        //call method to save current function
+    case ImportFunctions:
+        //call method to import LaTeX functions
+        qDebug() << "call import LaTeX functions method";
         break;
-    case LoadFunction:
-        //call method to load current function
+    case ExportFunctions:
+        //call method to export LaTeX functions
+        qDebug() << "call export LaTeX functions method";
         break;
-    case ClearFunction:
-        //call method to clear current function(s)
+    case SaveGraph:
+        //call method to save current graph
+        qDebug() << "call save current graph method";
         break;
-    case DrawFunction:
-        //call method to draw current function
+    case ExitApplication:
+        QCoreApplication::exit();
         break;
     }
 }
