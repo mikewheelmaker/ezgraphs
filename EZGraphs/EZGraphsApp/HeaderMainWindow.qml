@@ -67,13 +67,21 @@ Item {
             }
 
             ButtonTemplate {
+                id: helpWindowButton
+
+                buttonText: "Help"
+                Layout.preferredHeight: 30
+                Layout.preferredWidth: 50
+                buttonFunction: 4
+            }
+
+            ButtonTemplate {
                 id: exitApplicationButton
 
                 buttonText: "Exit"
                 Layout.preferredHeight: 30
                 Layout.preferredWidth: 50
-                buttonFunction: 4
-                Layout.alignment: Qt.AlignRight
+                buttonFunction: 5
             }
         }
     }

@@ -7,6 +7,7 @@ enum ButtonFunctions
     ImportFunctions,
     ExportFunctions,
     SaveGraph,
+    Help,
     ExitApplication
 };
 

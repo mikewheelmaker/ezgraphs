@@ -33,6 +33,10 @@ void ButtonFunctionSupplier::onClickedSelectFunction(ButtonFunctions choice)
         //call method to save current graph
         qDebug() << "call save current graph method";
         break;
+    case Help:
+        //call method to display help window
+        qDebug() << "call help method";
+        break;
     case ExitApplication:
         QCoreApplication::exit();
         break;
