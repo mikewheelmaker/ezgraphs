@@ -32,12 +32,5 @@ ApplicationWindow {
             Layout.fillWidth: true
             color: "#DFEFF5"
         }
-
-        FooterMainWindow {
-            id: footer
-
-            Layout.preferredHeight: 50
-            Layout.fillWidth: true
-        }
     }
 }

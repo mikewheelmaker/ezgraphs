@@ -11,7 +11,7 @@ Item {
     height: 10
 
     Rectangle {
-        id: backgroundRectangle
+        id: headerBackgroundRectangle
 
         anchors.fill: parent
         color: "#96DDF7"

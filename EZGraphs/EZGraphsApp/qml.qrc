@@ -3,6 +3,5 @@
         <file>main.qml</file>
         <file>HeaderMainWindow.qml</file>
         <file>ButtonTemplate.qml</file>
-        <file>FooterMainWindow.qml</file>
     </qresource>
 </RCC>
