@@ -1,8 +1,6 @@
 #ifndef APPLICATIONMANAGER_H
 #define APPLICATIONMANAGER_H
 
-#include <QObject>
-
 #include "cachemanager.h"
 #include "functionmanager.h"
 #include "iomanager.h"
