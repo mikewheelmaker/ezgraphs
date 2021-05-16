@@ -14,5 +14,5 @@ Button {
     width: buttonWidth
     height: buttonHeight
 
-    onClicked: ButtonFunctionSupplier.onClickedSelectFunction(buttonFunction)
+    onClicked: ApplicationManager.buttonClicked(buttonFunction)
 }

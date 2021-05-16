@@ -3,7 +3,7 @@
 #include <QQmlComponent>
 #include <QQmlContext>
 
-#include "buttonfunctionsupplier.h"
+#include "applicationmanager.h"
 
 int main(int argc, char *argv[])
 {
@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
 
     QGuiApplication app(argc, argv);
 
-    ButtonFunctionSupplier bfs;
+    ApplicationManager am;
 
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/main.qml"));
@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
         if (!obj && url == objUrl)
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
-    engine.rootContext()->setContextProperty("ButtonFunctionSupplier", &bfs);
+    engine.rootContext()->setContextProperty("ApplicationManager", &am);
 
     engine.load(url);
 

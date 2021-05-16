@@ -31,6 +31,29 @@ ApplicationWindow {
             Layout.fillHeight: true
             Layout.fillWidth: true
             color: "#DFEFF5"
+
+            RowLayout {
+                id: contentContainer
+
+                anchors.fill: parent
+                spacing: 0
+
+                Rectangle {
+                    id: functionListBackgroundRectangle
+
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+                    color: "#000000"
+                }
+
+                Rectangle {
+                    id: graphBackgroundRectangle
+
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+                    color: "#FFFFFF"
+                }
+            }
         }
     }
 }

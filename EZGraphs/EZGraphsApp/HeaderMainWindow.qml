@@ -52,10 +52,19 @@ Item {
             ButtonTemplate {
                 id: saveGraphButton
 
-                buttonText: "Save"
+                buttonText: "Save As"
                 Layout.preferredHeight: 30
                 Layout.preferredWidth: 50
                 buttonFunction: 3
+            }
+
+            ButtonTemplate {
+                id: syncButton
+
+                buttonText: "Sync"
+                Layout.preferredHeight: 30
+                Layout.preferredWidth: 50
+                buttonFunction: 4
             }
 
             Rectangle {
@@ -72,7 +81,7 @@ Item {
                 buttonText: "Help"
                 Layout.preferredHeight: 30
                 Layout.preferredWidth: 50
-                buttonFunction: 4
+                buttonFunction: 5
             }
 
             ButtonTemplate {
@@ -81,7 +90,7 @@ Item {
                 buttonText: "Exit"
                 Layout.preferredHeight: 30
                 Layout.preferredWidth: 50
-                buttonFunction: 5
+                buttonFunction: 6
             }
         }
     }

@@ -1,19 +1,14 @@
 #include <QCoreApplication>
 #include <QDebug>
 
-#include "buttonfunctionsupplier.h"
+#include "applicationmanager.h"
 
-ButtonFunctionSupplier::ButtonFunctionSupplier(QObject *parent) : QObject(parent)
+ApplicationManager::ApplicationManager(QObject *parent) : QObject(parent)
 {
 
 }
 
-ButtonFunctionSupplier::~ButtonFunctionSupplier()
-{
-
-}
-
-void ButtonFunctionSupplier::onClickedSelectFunction(ButtonFunctions choice)
+void ApplicationManager::buttonClicked(ButtonFunctions choice)
 {
     switch(choice)
     {
@@ -32,6 +27,10 @@ void ButtonFunctionSupplier::onClickedSelectFunction(ButtonFunctions choice)
     case SaveGraph:
         //call method to save current graph
         qDebug() << "call save current graph method";
+        break;
+    case Sync:
+        //call method to sync local and remote DB
+        qDebug() << "call sync method";
         break;
     case Help:
         //call method to display help window
