@@ -1,8 +1,6 @@
 #ifndef NETWORKHANDLER_H
 #define NETWORKHANDLER_H
 
-#include <QObject>
-
 #include "utilities.h"
 
 Q_DECLARE_LOGGING_CATEGORY(networkHandler)

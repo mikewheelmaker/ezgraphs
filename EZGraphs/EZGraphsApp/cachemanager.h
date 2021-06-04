@@ -1,20 +1,36 @@
 #ifndef CACHEMANAGER_H
 #define CACHEMANAGER_H
 
-#include <QObject>
+#include <QSqlDatabase>
 
 #include "utilities.h"
 
 Q_DECLARE_LOGGING_CATEGORY(cacheManager)
 
-class CacheManager : public QObject
+const QString CREATE_TABLE("CREATE TABLE IF NOT EXISTS %1 (%2)");
+
+class CacheManager
 {
-    Q_OBJECT
 public:
-    explicit CacheManager(QObject *parent = nullptr);
+    enum SearchCategories {
+        Alias = 0,
+        IsInjective,
+        IsSurjective,
+        IsBijective
+    };
+public:
+    CacheManager(const QString &path);
+    ~CacheManager();
 
-signals:
+    bool createTable();
+    bool insertFunction(const FunctionData &f);
+    bool retrieveFunction(const FunctionData &f, SearchCategories category);
+    bool deleteFunction(const FunctionData &f, SearchCategories category);
+    bool truncateTable(const QString &tableName);
+    bool dropTable(const QString &tableName);
 
+private:
+    QSqlDatabase m_db;
 };
 
 #endif // CACHEMANAGER_H

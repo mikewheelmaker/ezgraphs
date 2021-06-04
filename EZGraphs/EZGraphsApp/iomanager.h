@@ -1,8 +1,6 @@
 #ifndef IOMANAGER_H
 #define IOMANAGER_H
 
-#include <QObject>
-
 #include "utilities.h"
 
 Q_DECLARE_LOGGING_CATEGORY(ioManager)

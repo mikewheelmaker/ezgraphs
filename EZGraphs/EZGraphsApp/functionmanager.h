@@ -1,8 +1,6 @@
 #ifndef FUNCTIONMANAGER_H
 #define FUNCTIONMANAGER_H
 
-#include <QObject>
-
 #include "utilities.h"
 
 Q_DECLARE_LOGGING_CATEGORY(functionManager)
