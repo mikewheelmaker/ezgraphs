@@ -44,25 +44,25 @@ bool CacheManager::createTable()
 
 bool CacheManager::insertFunction(const FunctionData &f)
 {
-
+    return false;
 }
 
 bool CacheManager::retrieveFunction(const FunctionData &f, CacheManager::SearchCategories category)
 {
-
+    return false;
 }
 
 bool CacheManager::deleteFunction(const FunctionData &f, CacheManager::SearchCategories category)
 {
-
+    return false;
 }
 
 bool CacheManager::truncateTable(const QString &tableName)
 {
-
+    return false;
 }
 
 bool CacheManager::dropTable(const QString &tableName)
 {
-
+    return false;
 }

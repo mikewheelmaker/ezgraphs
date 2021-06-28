@@ -3,12 +3,20 @@ import QtQuick.Window
 import QtQuick.Layouts
 import QtQuick.Controls
 import QtQml
+import QtCharts
 
 ApplicationWindow {
     width: 1280
     height: 720
     visible: true
     //visibility: Qt.WindowFullScreen
+
+    Connections {
+        target: ApplicationManager
+        function onValueAdded() {
+            functionGraph.functionValues.append(ApplicationManager.value.x, ApplicationManager.value.y);
+        }
+    }
 
     title: qsTr("EZGraphs")
 
@@ -20,6 +28,13 @@ ApplicationWindow {
 
         HeaderMainWindow {
             id: header
+
+            Layout.preferredHeight: 50
+            Layout.fillWidth: true
+        }
+
+        FunctionInput {
+            id: functionInput
 
             Layout.preferredHeight: 50
             Layout.fillWidth: true
@@ -43,7 +58,26 @@ ApplicationWindow {
 
                     Layout.fillHeight: true
                     Layout.fillWidth: true
-                    color: "#000000"
+                    color: "white"
+
+                    ListView {
+                        id: listViewContainer
+
+                        anchors.fill: parent
+                        anchors.margins: 10
+                        clip: true
+
+                        model: ApplicationManager.functionModel
+                        delegate: ListViewDelegate {}
+                    }
+                }
+
+                Rectangle {
+                    id: dividerRectangle
+
+                    Layout.fillHeight: true
+                    Layout.preferredWidth: 3
+                    color: "black"
                 }
 
                 Rectangle {
@@ -51,7 +85,20 @@ ApplicationWindow {
 
                     Layout.fillHeight: true
                     Layout.fillWidth: true
-                    color: "#FFFFFF"
+                    color: "white"
+
+                    FunctionGraph {
+                        id: functionGraph
+
+                        anchors.fill: parent
+
+                        chartTitle: "New Title"
+                        lineColor: "black"
+                        minX: 0
+                        minY: -1.1
+                        maxX: 10
+                        maxY: 1.1
+                    }
                 }
             }
         }

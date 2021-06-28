@@ -4,7 +4,8 @@
 
 ApplicationManager::ApplicationManager(QObject *parent) : QObject(parent)
 {
-
+    m_functionManager = new FunctionManager(this);
+    connect(m_functionManager, &FunctionManager::newValueChanged, this, &ApplicationManager::onValueCalculated);
 }
 
 void ApplicationManager::buttonClicked(ButtonFunctions choice)
@@ -14,6 +15,15 @@ void ApplicationManager::buttonClicked(ButtonFunctions choice)
     case NewCanvas:
         //call method to create new canvas
         qDebug() << "call new canvas method";
+        break;
+    case AddFunction:
+        //call method to add function to graph
+        qDebug() << "call add function method";
+        m_functionManager->calculateFunction();
+        break;
+    case RemoveFunction:
+        //call method to remove function from graph
+        qDebug() << "call remove function method";
         break;
     case ImportFunctions:
         //call method to import LaTeX functions
@@ -39,4 +49,10 @@ void ApplicationManager::buttonClicked(ButtonFunctions choice)
         QCoreApplication::exit();
         break;
     }
+}
+
+void ApplicationManager::onValueCalculated()
+{
+    m_value = m_functionManager->getNewValue();
+    emit valueAdded();
 }

@@ -17,9 +17,11 @@ struct FunctionData {
 };
 
 struct ConfigData {
-    int numberOfSamples;
+    qreal stepSize;
     bool isAutoSaveON;
     int autoSaveInterval;
 };
+
+static ConfigData configurationData { 1, true, 10};
 
 #endif // UTILITIES_H

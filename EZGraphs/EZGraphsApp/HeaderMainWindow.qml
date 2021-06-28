@@ -37,7 +37,7 @@ Item {
                 buttonText: "Import LaTeX Function(s)"
                 Layout.preferredHeight: 30
                 Layout.preferredWidth: 150
-                buttonFunction: 1
+                buttonFunction: 3
             }
 
             ButtonTemplate {
@@ -46,7 +46,7 @@ Item {
                 buttonText: "Export LaTeX Function(s)"
                 Layout.preferredHeight: 30
                 Layout.preferredWidth: 150
-                buttonFunction: 2
+                buttonFunction: 4
             }
 
             ButtonTemplate {
@@ -55,7 +55,7 @@ Item {
                 buttonText: "Save As"
                 Layout.preferredHeight: 30
                 Layout.preferredWidth: 50
-                buttonFunction: 3
+                buttonFunction: 5
             }
 
             ButtonTemplate {
@@ -64,7 +64,7 @@ Item {
                 buttonText: "Sync"
                 Layout.preferredHeight: 30
                 Layout.preferredWidth: 50
-                buttonFunction: 4
+                buttonFunction: 6
             }
 
             Rectangle {
@@ -81,7 +81,7 @@ Item {
                 buttonText: "Help"
                 Layout.preferredHeight: 30
                 Layout.preferredWidth: 50
-                buttonFunction: 5
+                buttonFunction: 7
             }
 
             ButtonTemplate {
@@ -90,7 +90,7 @@ Item {
                 buttonText: "Exit"
                 Layout.preferredHeight: 30
                 Layout.preferredWidth: 50
-                buttonFunction: 6
+                buttonFunction: 8
             }
         }
     }

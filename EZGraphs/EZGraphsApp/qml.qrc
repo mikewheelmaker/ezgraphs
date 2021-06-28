@@ -3,5 +3,7 @@
         <file>main.qml</file>
         <file>HeaderMainWindow.qml</file>
         <file>ButtonTemplate.qml</file>
+        <file>FunctionInput.qml</file>
+        <file>FunctionGraph.qml</file>
     </qresource>
 </RCC>

@@ -1,4 +1,4 @@
-QT += quick sql
+QT += quick sql charts
 
 CONFIG += c++11
 
