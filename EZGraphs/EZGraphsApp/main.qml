@@ -9,12 +9,24 @@ ApplicationWindow {
     width: 1280
     height: 720
     visible: true
-    //visibility: Qt.WindowFullScreen
 
     Connections {
         target: ApplicationManager
-        function onValueAdded() {
-            functionGraph.functionValues.append(ApplicationManager.value.x, ApplicationManager.value.y);
+
+        function onFunctionAdded(alias, expression, color, numberOfValues) {
+            var newSeries = functionGraph.functionChart.createSeries(ChartView.SeriesTypeLine, alias, functionGraph.axisX, functionGraph.axisY);
+            newSeries.color = color;
+            var tempList = ApplicationManager.currentFunctionValues;
+            for(var i=0; i < numberOfValues; ++i)
+                newSeries.append(tempList[i].x, tempList[i].y);
+        }
+
+        function onFunctionRemoved(index) {
+            functionGraph.functionChart.removeSeries(functionGraph.functionChart.series(index))
+        }
+
+        function onListCleared() {
+            functionGraph.functionChart.removeAllSeries();
         }
     }
 
@@ -66,6 +78,7 @@ ApplicationWindow {
                         anchors.fill: parent
                         anchors.margins: 10
                         clip: true
+                        spacing: 10
 
                         model: ApplicationManager.functionModel
                         delegate: ListViewDelegate {}
@@ -92,12 +105,11 @@ ApplicationWindow {
 
                         anchors.fill: parent
 
-                        chartTitle: "New Title"
-                        lineColor: "black"
-                        minX: 0
-                        minY: -1.1
+                        chartTitle: "Function Graphs"
+                        minX: -10
+                        minY: -10
                         maxX: 10
-                        maxY: 1.1
+                        maxY: 10
                     }
                 }
             }

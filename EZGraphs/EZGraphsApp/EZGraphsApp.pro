@@ -9,7 +9,8 @@ DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs depr
 SOURCES += \
         applicationmanager.cpp \
         cachemanager.cpp \
-        functionmanager.cpp \
+        functioncalculator.cpp \
+        functionmodel.cpp \
         iomanager.cpp \
         main.cpp \
         networkhandler.cpp
@@ -30,7 +31,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     applicationmanager.h \
     cachemanager.h \
-    functionmanager.h \
+    functioncalculator.h \
+    functionmodel.h \
     iomanager.h \
     networkhandler.h \
     utilities.h

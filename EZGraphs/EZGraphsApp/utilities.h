@@ -8,12 +8,13 @@
 
 struct FunctionData {
     QString alias;
-    QVector<double> values;
+    QList<QPointF> values;
+    QString latexExpression;
+    QString lineColor;
     QByteArray graph;
     bool isInjective;
     bool isSurjective;
     bool isBijective;
-    QString latexExpression;
 };
 
 struct ConfigData {
@@ -22,6 +23,10 @@ struct ConfigData {
     int autoSaveInterval;
 };
 
-static ConfigData configurationData { 1, true, 10};
+struct FunctionModelItem {
+    QString alias;
+    QString expression;
+    double step;
+};
 
 #endif // UTILITIES_H

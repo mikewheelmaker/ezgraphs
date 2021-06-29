@@ -30,32 +30,32 @@ Item {
                 Layout.preferredWidth: 100
                 buttonFunction: 0
             }
-
+/*
             ButtonTemplate {
                 id: importLaTeXFunctionsButton
 
-                buttonText: "Import LaTeX Function(s)"
+                buttonText: "Import LaTeX"
                 Layout.preferredHeight: 30
-                Layout.preferredWidth: 150
-                buttonFunction: 3
+                Layout.preferredWidth: 100
+                buttonFunction: 1
             }
 
             ButtonTemplate {
                 id: exportLaTeXFunctionsButton
 
-                buttonText: "Export LaTeX Function(s)"
+                buttonText: "Export LaTeX"
                 Layout.preferredHeight: 30
-                Layout.preferredWidth: 150
-                buttonFunction: 4
+                Layout.preferredWidth: 100
+                buttonFunction: 2
             }
-
+*/
             ButtonTemplate {
                 id: saveGraphButton
 
                 buttonText: "Save As"
                 Layout.preferredHeight: 30
                 Layout.preferredWidth: 50
-                buttonFunction: 5
+                buttonFunction: 3
             }
 
             ButtonTemplate {
@@ -64,7 +64,7 @@ Item {
                 buttonText: "Sync"
                 Layout.preferredHeight: 30
                 Layout.preferredWidth: 50
-                buttonFunction: 6
+                buttonFunction: 4
             }
 
             Rectangle {
@@ -81,7 +81,7 @@ Item {
                 buttonText: "Help"
                 Layout.preferredHeight: 30
                 Layout.preferredWidth: 50
-                buttonFunction: 7
+                buttonFunction: 5
             }
 
             ButtonTemplate {
@@ -90,7 +90,7 @@ Item {
                 buttonText: "Exit"
                 Layout.preferredHeight: 30
                 Layout.preferredWidth: 50
-                buttonFunction: 8
+                buttonFunction: 6
             }
         }
     }

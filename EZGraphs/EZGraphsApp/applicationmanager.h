@@ -2,7 +2,8 @@
 #define APPLICATIONMANAGER_H
 
 #include "cachemanager.h"
-#include "functionmanager.h"
+#include "functioncalculator.h"
+#include "functionmodel.h"
 #include "iomanager.h"
 #include "networkhandler.h"
 
@@ -11,8 +12,6 @@ Q_DECLARE_LOGGING_CATEGORY(applicationManager)
 enum ButtonFunctions
 {
     NewCanvas = 0,
-    AddFunction,
-    RemoveFunction,
     ImportFunctions,
     ExportFunctions,
     SaveGraph,
@@ -24,26 +23,35 @@ enum ButtonFunctions
 class ApplicationManager : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QPointF value READ value NOTIFY valueAdded)
+    Q_PROPERTY(QAbstractListModel *functionModel READ model CONSTANT)
+    Q_PROPERTY(QList<QPointF> currentFunctionValues READ currentFunctionValues CONSTANT)
 public:
     explicit ApplicationManager(QObject *parent = nullptr);
 
-    Q_INVOKABLE void buttonClicked(ButtonFunctions choice);
+    FunctionModel *model() const { return m_functionModel; };
 
-    QPointF value() const { return m_value; };
+    Q_INVOKABLE void buttonClicked(ButtonFunctions choice);
+    Q_INVOKABLE void addFunction(QString option, QString rangeMin, QString rangeMax, QString step);
+    Q_INVOKABLE void removeFunction(int index);
+
+    QList<QPointF> currentFunctionValues() const { return m_currentFunctionData.values; };
 
 signals:
-    void valueAdded();
+    void functionAdded(QString alias, QString expression, QString color, int numberOfValues);
+    void functionRemoved(int index);
+    void listCleared();
 
 public slots:
-    void onValueCalculated();
+    void onNewFunctionAdded();
 
 private:
     CacheManager *m_cacheManager;
-    FunctionManager *m_functionManager;
+    FunctionCalculator *m_functionCalculator;
+    FunctionModel *m_functionModel;
     IOManager *m_ioManager;
     NetworkHandler *m_networkHandler;
-    QPointF m_value;
+    FunctionData m_currentFunctionData;
+    int m_currentFunctionIndex = -1;
 };
 
 #endif // APPLICATIONMANAGER_H

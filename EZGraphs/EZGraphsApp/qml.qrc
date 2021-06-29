@@ -5,5 +5,6 @@
         <file>ButtonTemplate.qml</file>
         <file>FunctionInput.qml</file>
         <file>FunctionGraph.qml</file>
+        <file>ListViewDelegate.qml</file>
     </qresource>
 </RCC>

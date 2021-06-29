@@ -13,12 +13,16 @@ Item {
 
     property string chartTitle: ""
     property string lineColor: ""
+    property string name: ""
     property double minX: 0
     property double minY: 0
     property double maxX: 0
     property double maxY: 0
 
-    property alias functionValues: splineSeries
+
+    property alias functionChart: functionChartView
+    property alias axisX: axisX
+    property alias axisY: axisY
 
     ChartView {
         id: functionChartView
@@ -37,13 +41,6 @@ Item {
 
             min: minY
             max: maxY
-        }
-
-        SplineSeries {
-            id: splineSeries
-            color: lineColor
-            axisX: axisX
-            axisY: axisY
         }
     }
 }
