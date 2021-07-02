@@ -22,41 +22,57 @@ Item {
             anchors.margins: 5
 
             TextField {
+                id: functionAliasInput
+
+                Layout.preferredWidth: 150
+                Layout.preferredHeight: 30
+
+                placeholderText: "Enter alias here"
+                font.pixelSize: 15
+                verticalAlignment: Qt.AlignVCenter
+            }
+
+            TextField {
                 id: functionFormulaInput
 
-                Layout.preferredHeight: 30
                 Layout.fillWidth: true
+                Layout.preferredHeight: 30
 
                 placeholderText: "Enter formula here"
+                font.pixelSize: 15
                 verticalAlignment: Qt.AlignVCenter
             }
 
             TextField {
                 id: functionRangeMinInput
 
+                Layout.preferredWidth: 40
                 Layout.preferredHeight: 30
-                Layout.preferredWidth: 30
 
                 placeholderText: "Min"
+                font.pixelSize: 15
                 verticalAlignment: Qt.AlignVCenter
             }
 
             TextField {
                 id: functionRangeMaxInput
 
+                Layout.preferredWidth: 40
                 Layout.preferredHeight: 30
-                Layout.preferredWidth: 30
 
                 placeholderText: "Max"
+                font.pixelSize: 15
                 verticalAlignment: Qt.AlignVCenter
             }
+
             TextField {
                 id: functionStepInput
 
+                Layout.preferredWidth: 40
                 Layout.preferredHeight: 30
-                Layout.preferredWidth: 30
 
                 placeholderText: "Step"
+                font.pixelSize: 15
                 verticalAlignment: Qt.AlignVCenter
             }
 
@@ -64,14 +80,28 @@ Item {
                 id: addFunctionButton
 
                 text: "Add Function"
-                Layout.preferredHeight: 30
+                font.pixelSize: 15
                 Layout.preferredWidth: 100
+                Layout.preferredHeight: 30
                 onClicked: {
-                    ApplicationManager.addFunction(functionFormulaInput.text, functionRangeMinInput.text, functionRangeMaxInput.text, functionStepInput.text);
-                    functionFormulaInput.text="";
-                    functionRangeMinInput.text="";
-                    functionRangeMaxInput.text="";
-                    functionStepInput.text="";
+                    if(functionAliasInput.text.length != 0)
+                    {
+                        ApplicationManager.addFunction(functionAliasInput.text, functionFormulaInput.text,
+                                                       functionRangeMinInput.text, functionRangeMaxInput.text,
+                                                       functionStepInput.text);
+                        functionAliasInput.text = "";
+                        functionAliasInput.placeholderText = "Enter alias here"
+                        functionAliasInput.placeholderTextColor = "black"
+                        functionFormulaInput.text="";
+                        functionRangeMinInput.text="";
+                        functionRangeMaxInput.text="";
+                        functionStepInput.text="";
+                    }
+                    else
+                    {
+                        functionAliasInput.placeholderText = "MANDATORY"
+                        functionAliasInput.placeholderTextColor = "red"
+                    }
                 }
             }
         }

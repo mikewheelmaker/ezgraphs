@@ -14,11 +14,9 @@ struct FunctionData {
     QByteArray graph;
     bool isInjective;
     bool isSurjective;
-    bool isBijective;
 };
 
 struct ConfigData {
-    qreal stepSize;
     bool isAutoSaveON;
     int autoSaveInterval;
 };

@@ -12,8 +12,6 @@ Item {
     height: 10
 
     property string chartTitle: ""
-    property string lineColor: ""
-    property string name: ""
     property double minX: 0
     property double minY: 0
     property double maxX: 0

@@ -2,9 +2,11 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>HeaderMainWindow.qml</file>
-        <file>ButtonTemplate.qml</file>
         <file>FunctionInput.qml</file>
         <file>FunctionGraph.qml</file>
         <file>ListViewDelegate.qml</file>
+        <file>RemoveFunctionDialog.qml</file>
+        <file>SaveAsDialog.qml</file>
+        <file>InfoWindow.qml</file>
     </qresource>
 </RCC>

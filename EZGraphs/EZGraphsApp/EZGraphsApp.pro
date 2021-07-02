@@ -12,8 +12,7 @@ SOURCES += \
         functioncalculator.cpp \
         functionmodel.cpp \
         iomanager.cpp \
-        main.cpp \
-        networkhandler.cpp
+        main.cpp
 
 RESOURCES += qml.qrc
 
@@ -34,5 +33,4 @@ HEADERS += \
     functioncalculator.h \
     functionmodel.h \
     iomanager.h \
-    networkhandler.h \
     utilities.h

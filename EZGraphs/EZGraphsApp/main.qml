@@ -6,9 +6,11 @@ import QtQml
 import QtCharts
 
 ApplicationWindow {
+    id: mainWindow
     width: 1280
     height: 720
     visible: true
+    title: "EZGraphs"
 
     Connections {
         target: ApplicationManager
@@ -25,12 +27,10 @@ ApplicationWindow {
             functionGraph.functionChart.removeSeries(functionGraph.functionChart.series(index))
         }
 
-        function onListCleared() {
+        function onFunctionListCleared() {
             functionGraph.functionChart.removeAllSeries();
         }
     }
-
-    title: qsTr("EZGraphs")
 
     ColumnLayout {
         id: mainWindowContainer
@@ -41,22 +41,22 @@ ApplicationWindow {
         HeaderMainWindow {
             id: header
 
-            Layout.preferredHeight: 50
             Layout.fillWidth: true
+            Layout.preferredHeight: 50
         }
 
         FunctionInput {
             id: functionInput
 
-            Layout.preferredHeight: 50
             Layout.fillWidth: true
+            Layout.preferredHeight: 50
         }
 
         Rectangle {
             id: contentBackgroundRectangle
 
-            Layout.fillHeight: true
             Layout.fillWidth: true
+            Layout.fillHeight: true
             color: "#DFEFF5"
 
             RowLayout {
@@ -68,36 +68,85 @@ ApplicationWindow {
                 Rectangle {
                     id: functionListBackgroundRectangle
 
-                    Layout.fillHeight: true
                     Layout.fillWidth: true
+                    Layout.fillHeight: true
                     color: "white"
 
-                    ListView {
-                        id: listViewContainer
+                    ColumnLayout {
+                        id: listContainer
 
                         anchors.fill: parent
-                        anchors.margins: 10
-                        clip: true
-                        spacing: 10
+                        anchors.margins: 5
+                        spacing: 0
 
-                        model: ApplicationManager.functionModel
-                        delegate: ListViewDelegate {}
+                        Rectangle {
+                            id: listHeaderContainer
+
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: 30
+
+                            RowLayout {
+                                id: listHeaderLayout
+
+                                anchors.fill: parent
+
+                                Text {
+                                    Layout.preferredWidth: 100
+                                    Layout.fillHeight: true
+                                    text: "Alias"
+                                    font.pixelSize: 15
+                                }
+
+                                Text {
+                                    Layout.fillWidth: true
+                                    Layout.fillHeight: true
+                                    text: "Expression"
+                                    font.pixelSize: 15
+                                }
+
+                                Text {
+                                    Layout.preferredWidth: 50
+                                    Layout.fillHeight: true
+                                    text: "Step"
+                                    font.pixelSize: 15
+                                }
+
+                                Text {
+                                    Layout.preferredWidth: 60
+                                    Layout.fillHeight: true
+                                    text: "Remove"
+                                    font.pixelSize: 15
+                                }
+                            }
+                        }
+
+                        ListView {
+                            id: listViewContainer
+
+                            Layout.fillWidth: true
+                            Layout.fillHeight: true
+                            clip: true
+                            spacing: 5
+
+                            model: ApplicationManager.functionModel
+                            delegate: ListViewDelegate {}
+                        }
                     }
                 }
 
                 Rectangle {
                     id: dividerRectangle
 
-                    Layout.fillHeight: true
                     Layout.preferredWidth: 3
+                    Layout.fillHeight: true
                     color: "black"
                 }
 
                 Rectangle {
                     id: graphBackgroundRectangle
 
-                    Layout.fillHeight: true
                     Layout.fillWidth: true
+                    Layout.fillHeight: true
                     color: "white"
 
                     FunctionGraph {

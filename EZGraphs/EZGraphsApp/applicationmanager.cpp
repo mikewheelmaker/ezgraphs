@@ -2,6 +2,8 @@
 
 #include "applicationmanager.h"
 
+Q_LOGGING_CATEGORY(applicationManager, "applicationManager.log")
+
 QMap <int, QString> Colors {
     {0, "red"},
     {1, "blue"},
@@ -26,53 +28,39 @@ QMap <int, QString> Expressions {
     {4, "x"}
 };
 
-ApplicationManager::ApplicationManager(QObject *parent) : QObject(parent)
+ApplicationManager::ApplicationManager(QObject *parent) : QObject(parent),
+    m_cacheManager(new CacheManager("cache.db")),
+    m_functionCalculator(new FunctionCalculator(this)),
+    m_functionModel(new FunctionModel(this)),
+    m_ioManager(new IOManager(this->findChild<QChartView *>("functionGraph"), this))
 {
-    m_functionCalculator = new FunctionCalculator(this);
-    m_functionModel = new FunctionModel(this);
     connect(m_functionCalculator, &FunctionCalculator::newFunctionAdded, this, &ApplicationManager::onNewFunctionAdded);
 }
 
-void ApplicationManager::buttonClicked(ButtonFunctions choice)
+ApplicationManager::~ApplicationManager()
 {
-    switch(choice)
+    if(m_cacheManager != nullptr)
+        delete m_cacheManager;
+
+    if(m_functionCalculator != nullptr)
     {
-    case NewCanvas:
-        //call method to create new canvas
-        qDebug() << "call new canvas method";
-        m_functionModel->clearList();
         m_functionCalculator->clearList();
-        emit listCleared();
-        break;
-    case ImportFunctions:
-        //call method to import LaTeX functions
-        qDebug() << "call import LaTeX functions method";
-        break;
-    case ExportFunctions:
-        //call method to export LaTeX functions
-        qDebug() << "call export LaTeX functions method";
-        break;
-    case SaveGraph:
-        //call method to save current graph
-        qDebug() << "call save current graph method";
-        break;
-    case Sync:
-        //call method to sync local and remote DB
-        qDebug() << "call sync method";
-        break;
-    case Help:
-        //call method to display help window
-        qDebug() << "call help method";
-        break;
-    case ExitApplication:
-        QCoreApplication::exit();
-        break;
+        delete m_functionCalculator;
     }
+
+    if(m_functionModel != nullptr)
+    {
+        m_functionModel->clearList();
+        delete m_functionModel;
+    }
+
+    if(m_ioManager != nullptr)
+        delete m_ioManager;
 }
 
-void ApplicationManager::addFunction(QString option, QString rangeMin, QString rangeMax, QString step)
+void ApplicationManager::addFunction(QString alias, QString expression, QString rangeMin, QString rangeMax, QString step)
 {
-    int tempKey = Names.key(option, -1);
+    int tempKey = Names.key(alias, -1);
     if(Names.count(tempKey) == 0)
     {
         tempKey=4;
@@ -90,22 +78,44 @@ void ApplicationManager::addFunction(QString option, QString rangeMin, QString r
     if(!step.isEmpty())
         tempStep = step.toDouble();
 
-    m_currentFunctionData.alias = Names[tempKey];
+    m_currentFunctionData.alias = alias;
     m_currentFunctionData.latexExpression = Expressions[tempKey];
     m_currentFunctionData.lineColor = Colors[tempKey];
     m_functionModel->addItem({m_currentFunctionData.alias, m_currentFunctionData.latexExpression, tempStep});
     m_functionCalculator->calculateFunction(tempKey, tempRangeMin, tempRangeMax, tempStep);
 }
 
-void ApplicationManager::removeFunction(int index)
+void ApplicationManager::removeFunction()
 {
     qDebug() << "call remove function method";
-    if(index >=0) {
+    emit functionRemoved(m_currentFunctionIndex);
+    m_functionCalculator->removeFunctionFromList(m_currentFunctionIndex);
+    m_functionModel->removeItem(m_currentFunctionIndex);
+}
+
+void ApplicationManager::setCurrentFunctionIndex(int index)
+{
+    if(m_currentFunctionIndex != index)
         m_currentFunctionIndex = index;
-        emit functionRemoved(m_currentFunctionIndex);
-        m_functionCalculator->removeFunctionFromList(m_currentFunctionIndex);
-        m_functionModel->removeItem(m_currentFunctionIndex);
-    }
+}
+
+void ApplicationManager::saveGraph(int option, QString fileName)
+{
+    m_ioManager->saveGraph(option, fileName);
+}
+
+void ApplicationManager::clearGraph()
+{
+    qDebug() << "call clear graph method";
+    m_functionModel->clearList();
+    m_functionCalculator->clearList();
+    emit functionListCleared();
+}
+
+void ApplicationManager::openHelp()
+{
+    qDebug() << "call open help method";
+    m_ioManager->openHelp();
 }
 
 void ApplicationManager::onNewFunctionAdded()

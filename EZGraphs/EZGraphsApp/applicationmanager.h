@@ -5,20 +5,8 @@
 #include "functioncalculator.h"
 #include "functionmodel.h"
 #include "iomanager.h"
-#include "networkhandler.h"
 
 Q_DECLARE_LOGGING_CATEGORY(applicationManager)
-
-enum ButtonFunctions
-{
-    NewCanvas = 0,
-    ImportFunctions,
-    ExportFunctions,
-    SaveGraph,
-    Sync,
-    Help,
-    ExitApplication
-};
 
 class ApplicationManager : public QObject
 {
@@ -26,20 +14,26 @@ class ApplicationManager : public QObject
     Q_PROPERTY(QAbstractListModel *functionModel READ model CONSTANT)
     Q_PROPERTY(QList<QPointF> currentFunctionValues READ currentFunctionValues CONSTANT)
 public:
+
+public:
     explicit ApplicationManager(QObject *parent = nullptr);
+    virtual ~ApplicationManager();
 
     FunctionModel *model() const { return m_functionModel; };
 
-    Q_INVOKABLE void buttonClicked(ButtonFunctions choice);
-    Q_INVOKABLE void addFunction(QString option, QString rangeMin, QString rangeMax, QString step);
-    Q_INVOKABLE void removeFunction(int index);
+    Q_INVOKABLE void addFunction(QString alias, QString expression, QString rangeMin, QString rangeMax, QString step);
+    Q_INVOKABLE void removeFunction();
+    Q_INVOKABLE void setCurrentFunctionIndex(int index);
+    Q_INVOKABLE void saveGraph(int option, QString fileName);
+    Q_INVOKABLE void clearGraph();
+    Q_INVOKABLE void openHelp();
 
     QList<QPointF> currentFunctionValues() const { return m_currentFunctionData.values; };
 
 signals:
     void functionAdded(QString alias, QString expression, QString color, int numberOfValues);
     void functionRemoved(int index);
-    void listCleared();
+    void functionListCleared();
 
 public slots:
     void onNewFunctionAdded();
@@ -49,7 +43,7 @@ private:
     FunctionCalculator *m_functionCalculator;
     FunctionModel *m_functionModel;
     IOManager *m_ioManager;
-    NetworkHandler *m_networkHandler;
+
     FunctionData m_currentFunctionData;
     int m_currentFunctionIndex = -1;
 };

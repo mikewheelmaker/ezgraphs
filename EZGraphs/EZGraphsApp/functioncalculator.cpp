@@ -5,6 +5,11 @@ FunctionCalculator::FunctionCalculator(QObject *parent) : QObject(parent)
 
 }
 
+FunctionCalculator::~FunctionCalculator()
+{
+    clearList();
+}
+
 void FunctionCalculator::calculateFunction(int option, double rangeMin, double rangeMax, double step)
 {
     QList<QPointF> tempList {};

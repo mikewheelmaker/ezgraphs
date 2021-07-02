@@ -12,6 +12,7 @@ class FunctionCalculator : public QObject
     Q_OBJECT
 public:
     explicit FunctionCalculator(QObject *parent = nullptr);
+    virtual ~FunctionCalculator();
 
     QList<QPointF> getNewFunctionValues() const { return m_listOfFunctions.constLast(); };
     void calculateFunction(int option, double rangeMin, double rangeMax, double step);

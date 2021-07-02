@@ -8,58 +8,81 @@ Item {
     id: itemContainer
 
     width: listViewContainer.width
-    height: 10
+    height: 20
 
-    RowLayout {
-        id: layoutContainer
+    RemoveFunctionDialog {
+        id: functionRemoveDialog
+    }
+
+    MouseArea {
+        id: mouseAreaDelegate
 
         anchors.fill: parent
-        spacing: 0
 
-        Rectangle {
-            id: functionExpressionRectangle
+        onDoubleClicked: {
+            var component = Qt.createComponent("InfoWindow.qml");
 
-            Layout.fillHeight: true
-            Layout.fillWidth: true
+            var window = component.createObject(mainWindow);
+            window.functionAlias = functionAlias;
+            window.injectivePropertyText = "Yes";
+            window.surjectivePropertyText = "Yes";
 
-            RowLayout {
-                id: functionLayoutContainer
+            window.show();
+        }
+    }
 
-                anchors.fill: parent
+    Rectangle {
+        id: functionLayoutBackground
 
-                Text {
-                    id: alias
+        anchors.fill: parent
+        color: "#ededed"
 
-                    Layout.fillHeight: true
-                    Layout.preferredWidth: 100
-                    text: functionAlias
-                }
+        RowLayout {
+            id: functionLayoutContainer
 
-                Text {
-                    id: expression
+            anchors.fill: parent
 
-                    Layout.fillHeight: true
-                    Layout.fillWidth: true
-                    text: functionExpression
-                }
+            Text {
+                id: alias
 
-                Text {
-                    id: step
+                Layout.preferredWidth: 100
+                Layout.fillHeight: true
+                verticalAlignment: Qt.AlignVCenter
+                text: functionAlias
+                font.pixelSize: 15
+            }
 
-                    Layout.fillHeight: true
-                    Layout.preferredWidth: 30
-                    text: functionStep
-                }
+            Text {
+                id: expression
 
-                Button {
-                    id: deleteFunctionButton
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                verticalAlignment: Qt.AlignVCenter
+                text: functionExpression
+                font.pixelSize: 15
+            }
 
-                    Layout.preferredWidth: 30
-                    Layout.fillHeight: true
-                    Layout.alignment: Qt.AlignRight
-                    text: "X"
+            Text {
+                id: step
 
-                    onClicked: ApplicationManager.removeFunction(index)
+                Layout.preferredWidth: 50
+                Layout.fillHeight: true
+                verticalAlignment: Qt.AlignVCenter
+                text: functionStep
+                font.pixelSize: 15
+            }
+
+            Button {
+                id: deleteFunctionButton
+
+                Layout.preferredWidth: 50
+                Layout.fillHeight: true
+                text: "X"
+                font.pixelSize: 15
+
+                onClicked: {
+                    ApplicationManager.setCurrentFunctionIndex(index);
+                    functionRemoveDialog.open();
                 }
             }
         }

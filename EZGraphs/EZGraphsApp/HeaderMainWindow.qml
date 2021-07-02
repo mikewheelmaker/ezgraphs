@@ -10,6 +10,10 @@ Item {
     width: 10
     height: 10
 
+    SaveAsDialog {
+        id: saveAsDialog
+    }
+
     Rectangle {
         id: headerBackgroundRectangle
 
@@ -22,75 +26,52 @@ Item {
             anchors.fill: parent
             anchors.margins: 5
 
-            ButtonTemplate {
-                id: newCanvasButton
+            Button {
+                id: clearGraphButton
 
-                buttonText: "New Canvas"
-                Layout.preferredHeight: 30
+                text: "Clear Graph"
+                font.pixelSize: 15
                 Layout.preferredWidth: 100
-                buttonFunction: 0
-            }
-/*
-            ButtonTemplate {
-                id: importLaTeXFunctionsButton
-
-                buttonText: "Import LaTeX"
                 Layout.preferredHeight: 30
-                Layout.preferredWidth: 100
-                buttonFunction: 1
+                onClicked: ApplicationManager.clearGraph()
             }
 
-            ButtonTemplate {
-                id: exportLaTeXFunctionsButton
-
-                buttonText: "Export LaTeX"
-                Layout.preferredHeight: 30
-                Layout.preferredWidth: 100
-                buttonFunction: 2
-            }
-*/
-            ButtonTemplate {
+            Button {
                 id: saveGraphButton
 
-                buttonText: "Save As"
+                text: "Save As"
+                font.pixelSize: 15
+                Layout.preferredWidth: 80
                 Layout.preferredHeight: 30
-                Layout.preferredWidth: 50
-                buttonFunction: 3
-            }
-
-            ButtonTemplate {
-                id: syncButton
-
-                buttonText: "Sync"
-                Layout.preferredHeight: 30
-                Layout.preferredWidth: 50
-                buttonFunction: 4
+                onClicked: saveAsDialog.open()
             }
 
             Rectangle {
                 id: spacerRectangle
 
-                Layout.fillHeight: true
                 Layout.fillWidth: true
+                Layout.fillHeight: true
                 color: parent.parent.color
             }
 
-            ButtonTemplate {
+            Button {
                 id: helpWindowButton
 
-                buttonText: "Help"
-                Layout.preferredHeight: 30
+                text: "Help"
+                font.pixelSize: 15
                 Layout.preferredWidth: 50
-                buttonFunction: 5
+                Layout.preferredHeight: 30
+                onClicked: ApplicationManager.openHelp()
             }
 
-            ButtonTemplate {
+            Button {
                 id: exitApplicationButton
 
-                buttonText: "Exit"
-                Layout.preferredHeight: 30
+                text: "Exit"
+                font.pixelSize: 15
                 Layout.preferredWidth: 50
-                buttonFunction: 6
+                Layout.preferredHeight: 30
+                onClicked: close()
             }
         }
     }

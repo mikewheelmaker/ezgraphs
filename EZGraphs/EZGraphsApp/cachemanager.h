@@ -7,8 +7,6 @@
 
 Q_DECLARE_LOGGING_CATEGORY(cacheManager)
 
-const QString CREATE_TABLE("CREATE TABLE IF NOT EXISTS %1 (%2)");
-
 class CacheManager
 {
 public:
@@ -18,6 +16,8 @@ public:
         IsSurjective,
         IsBijective
     };
+    const QString CREATE_TABLE {"CREATE TABLE IF NOT EXISTS %1 (%2)"};
+
 public:
     CacheManager(const QString &path);
     ~CacheManager();
