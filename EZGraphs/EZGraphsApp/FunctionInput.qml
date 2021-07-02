@@ -32,15 +32,14 @@ Item {
                 verticalAlignment: Qt.AlignVCenter
             }
 
-            TextField {
-                id: functionFormulaInput
+            ComboBox {
+                id: functionFormulaSelect
 
                 Layout.fillWidth: true
                 Layout.preferredHeight: 30
 
-                placeholderText: "Enter formula here"
-                font.pixelSize: 15
-                verticalAlignment: Qt.AlignVCenter
+                currentIndex: 0
+                model: [ "sin(x)", "cos(x)", "tan(x)", "exp(x)", "log(x)", "x", "x^2", "x^3", "1/x" ]
             }
 
             TextField {
@@ -86,13 +85,12 @@ Item {
                 onClicked: {
                     if(functionAliasInput.text.length != 0)
                     {
-                        ApplicationManager.addFunction(functionAliasInput.text, functionFormulaInput.text,
+                        ApplicationManager.addFunction(functionAliasInput.text, functionFormulaSelect.currentIndex,
                                                        functionRangeMinInput.text, functionRangeMaxInput.text,
                                                        functionStepInput.text);
                         functionAliasInput.text = "";
                         functionAliasInput.placeholderText = "Enter alias here"
                         functionAliasInput.placeholderTextColor = "black"
-                        functionFormulaInput.text="";
                         functionRangeMinInput.text="";
                         functionRangeMaxInput.text="";
                         functionStepInput.text="";

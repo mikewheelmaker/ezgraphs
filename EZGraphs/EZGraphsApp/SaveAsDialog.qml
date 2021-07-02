@@ -30,7 +30,7 @@ Dialog {
                 Layout.preferredHeight: 30
 
                 currentIndex: 0
-                model: [ "PNG", "BMP", "JPG", "PDF" ]
+                model: [ "PNG", "BMP", "JPG" ]
             }
 
             TextField {
@@ -59,9 +59,10 @@ Dialog {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 onClicked: {
-                    if(fileName.text.length != 0)
+                    if(fileName.text.length !== 0)
                     {
-                        ApplicationManager.saveGraph(fileFormatOption.currentIndex, fileName.text)
+                        //ApplicationManager.saveGraph(fileFormatOption.currentText, fileName.text)
+                        functionGraph.functionChart.grabToImage(function(result) {result.saveToFile(fileName.text + "." + fileFormatOption.currentText);})
                         saveAsOptionsDialog.close()
                     }
                     fileName.placeholderText = "MANDATORY"

@@ -14,23 +14,6 @@ Item {
         id: functionRemoveDialog
     }
 
-    MouseArea {
-        id: mouseAreaDelegate
-
-        anchors.fill: parent
-
-        onDoubleClicked: {
-            var component = Qt.createComponent("InfoWindow.qml");
-
-            var window = component.createObject(mainWindow);
-            window.functionAlias = functionAlias;
-            window.injectivePropertyText = "Yes";
-            window.surjectivePropertyText = "Yes";
-
-            window.show();
-        }
-    }
-
     Rectangle {
         id: functionLayoutBackground
 

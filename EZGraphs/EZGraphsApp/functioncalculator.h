@@ -5,7 +5,7 @@
 
 #include "utilities.h"
 
-Q_DECLARE_LOGGING_CATEGORY(functionManager)
+Q_DECLARE_LOGGING_CATEGORY(functionCalculator)
 
 class FunctionCalculator : public QObject
 {

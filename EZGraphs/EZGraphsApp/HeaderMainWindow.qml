@@ -33,7 +33,7 @@ Item {
                 font.pixelSize: 15
                 Layout.preferredWidth: 100
                 Layout.preferredHeight: 30
-                onClicked: ApplicationManager.clearGraph()
+                onClicked: ApplicationManager.clearGraph();
             }
 
             Button {
@@ -43,7 +43,7 @@ Item {
                 font.pixelSize: 15
                 Layout.preferredWidth: 80
                 Layout.preferredHeight: 30
-                onClicked: saveAsDialog.open()
+                onClicked: saveAsDialog.open();
             }
 
             Rectangle {
@@ -52,16 +52,6 @@ Item {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 color: parent.parent.color
-            }
-
-            Button {
-                id: helpWindowButton
-
-                text: "Help"
-                font.pixelSize: 15
-                Layout.preferredWidth: 50
-                Layout.preferredHeight: 30
-                onClicked: ApplicationManager.openHelp()
             }
 
             Button {

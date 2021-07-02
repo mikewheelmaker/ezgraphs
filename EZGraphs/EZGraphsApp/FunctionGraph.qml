@@ -17,7 +17,6 @@ Item {
     property double maxX: 0
     property double maxY: 0
 
-
     property alias functionChart: functionChartView
     property alias axisX: axisX
     property alias axisY: axisY
